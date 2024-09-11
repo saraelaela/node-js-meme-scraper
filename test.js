@@ -12,10 +12,20 @@ const axiosRequest = await axios.request({
 });
 
 // 03 loading the page: To query/manipulate DOM elements, we need to load raw HTML into cheerio:
-const $ = cheerio.load(axiosRequest.data);
+const websiteString = cheerio.load(axiosRequest.data);
 
-// const imageArr = axiosRequest.split(' ');
-// console.log(imageArr([2]));
+// console.log(websiteString);
+// console.log(axiosRequest);
+
+// const text = `${axiosRequest}`;
+// const splitString = text.split(/\r?\n/);
+
+console.log(typeof axiosRequest);
+
+// var obj = {"1":5,"2":7,"3":0,"4":0,"5":0,"6":0,"7":0,"8":0,"9":0,"10":0,"11":0,"12":0}
+const arr = Object.keys(axiosRequest).map((key) => [key, axiosRequest[key]]);
+
+console.log(typeof arr);
 
 // const axiosArr = [`${axiosRequest.data}`];
 // const slicedArray = array.slice(0, n);
