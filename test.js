@@ -26,12 +26,20 @@ const result = Object.keys(imageSourceAttributes).map((key) => [
   imageSourceAttributes[key],
 ]);
 
-const firstTen = result.slice(0, 11);
+const firstTen = result.slice(0, 10);
 
-// console.log(firstTen);
+for (let element of firstTen) {
+  console.log(element);
+}
 
-const [a, b, c, d, e, f, g, h, i, j] = firstTen;
-console.log(a); // 1
-console.log(b); // 2
+let memeNumber = 0;
+let memeName = 'file';
 
-// every pair of firstTen assign +1
+for (let element in firstTen) {
+  parseInt(memeNumber++);
+  console.log(`${memeName}_${memeNumber.toString().padStart(2, '0')}`);
+}
+
+// console.log(String(memeNumber).padStart(1, '0'));
+
+console.log(memeNumber.toString().padStart(2, '0'));
