@@ -12,40 +12,26 @@ const axiosRequest = await axios.request({
 });
 
 // 03 loading the page: To query/manipulate DOM elements, we need to load raw HTML into cheerio:
-const websiteString = cheerio.load(axiosRequest.data);
+const $ = cheerio.load(axiosRequest.data);
 
-// console.log(websiteString);
-// console.log(axiosRequest);
+const images = $('img');
+const photographs = [];
 
-// const text = `${axiosRequest}`;
-// const splitString = text.split(/\r?\n/);
+const imageSourceAttributes = $('img').map(function () {
+  return $(this).attr('src');
+});
 
-console.log(typeof axiosRequest);
+const result = Object.keys(imageSourceAttributes).map((key) => [
+  key,
+  imageSourceAttributes[key],
+]);
 
-// var obj = {"1":5,"2":7,"3":0,"4":0,"5":0,"6":0,"7":0,"8":0,"9":0,"10":0,"11":0,"12":0}
-const arr = Object.keys(axiosRequest).map((key) => [key, axiosRequest[key]]);
+const firstTen = result.slice(0, 11);
 
-console.log(typeof arr);
+// console.log(firstTen);
 
-// const axiosArr = [`${axiosRequest.data}`];
-// const slicedArray = array.slice(0, n);
+const [a, b, c, d, e, f, g, h, i, j] = firstTen;
+console.log(a); // 1
+console.log(b); // 2
 
-// const memeSection = $('section.images');
-// const name;
-
-// // folder to save images
-// if (!fs.existsSync('memes')) {
-//   fs.mkdirSync('memes');
-// }
-
-// // TO DO: function around it to loop for images?
-// const img = section.a.find('img');
-// const photograph = img.attr('src') || '';
-
-// if (photograph) {
-//   await axios
-//     .get(photograph, { responseType: 'arraybuffer' })
-//     .then((response) => {
-//       fs.writeFileSync(`memes/${name}.jpg`, response.data);
-//     });
-// }
+// every pair of firstTen assign +1
