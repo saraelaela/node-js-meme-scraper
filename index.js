@@ -28,7 +28,7 @@ const result = Object.keys(imageSourceAttributes).map((key) => [
 const firstTen = result.slice(0, 10).flat();
 
 const arr = [];
-for (let key of firstTen) {
+for (const key of firstTen) {
   arr.push(key); // Add each element to the result array
 }
 
@@ -40,15 +40,14 @@ let memeNumber = 0;
 //   console.log(`${memeName}_${memeNumber.toString().padStart(2, '0')}`);
 // }
 
-for (let key of firstTen) {
+for (const key of firstTen) {
   await axios
     .get(key, {
       responseType: 'arraybuffer',
     })
-    // eslint-disable-next-line no-loop-func
+
     .then((response) => {
       // Extract the last part of the URL for the image file name
-      const fileName = key.split('/').pop();
 
       // Save the image with the desired file name format
       fs.writeFileSync(
@@ -56,7 +55,6 @@ for (let key of firstTen) {
         response.data,
       );
 
-      // Increment memeNumber for the next image
       memeNumber++;
     });
 }
