@@ -5,7 +5,7 @@ import * as cheerio from 'cheerio';
 // downloading the target web page
 // by performing an HTTP GET request in Axios
 
-//async function performScraping() {
+// async function performScraping() {
 
 const axiosResponse = await axios.request({
   method: 'GET',

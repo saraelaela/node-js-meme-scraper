@@ -45,6 +45,7 @@ for (let key of firstTen) {
     .get(key, {
       responseType: 'arraybuffer',
     })
+    // eslint-disable-next-line no-loop-func
     .then((response) => {
       // Extract the last part of the URL for the image file name
       const fileName = key.split('/').pop();
