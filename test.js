@@ -1,8 +1,13 @@
 import axios from 'axios';
 import * as cheerio from 'cheerio';
 
-// 02 Making the HTTP Request
-const axiosRequest = await axios.request({
+// import cheerio from 'cheerio';
+// downloading the target web page
+// by performing an HTTP GET request in Axios
+
+//async function performScraping() {
+
+const axiosResponse = await axios.request({
   method: 'GET',
   url: 'https://memegen-link-examples-upleveled.netlify.app',
   headers: {
@@ -10,36 +15,26 @@ const axiosRequest = await axios.request({
       'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36',
   },
 });
+//}
 
-// 03 loading the page: To query/manipulate DOM elements, we need to load raw HTML into cheerio:
-const $ = cheerio.load(axiosRequest.data);
+// performScraping();
 
-const images = $('img');
-const photographs = [];
+const $ = cheerio.load(axiosResponse.data);
 
-const imageSourceAttributes = $('img').map(function () {
-  return $(this).attr('src');
-});
+//$.html();
+// $('img[id=image]').html();
+const htmlElement = $('#image');
+console.log(htmlElement.html());
 
-const result = Object.keys(imageSourceAttributes).map((key) => [
-  key,
-  imageSourceAttributes[key],
-]);
+console.log(axios.isCancel('something'));
+console.log(axiosResponse);
 
-const firstTen = result.slice(0, 10);
+$.root().html();
 
-for (let element of firstTen) {
-  console.log(element);
-}
+// How to Select an Element in Cheerio
+// Cheerio supports most of the common CSS selectors such as the class, id, and element selectors among others. In the code below, we are selecting the element with class fruits__mango and then logging the selected element to the console. Add the code below to your app.js file.
 
-let memeNumber = 0;
-let memeName = 'file';
+// const mango = $(".fruits__mango");
+// console.log(mango.html()); // Mango
 
-for (let element in firstTen) {
-  parseInt(memeNumber++);
-  console.log(`${memeName}_${memeNumber.toString().padStart(2, '0')}`);
-}
-
-// console.log(String(memeNumber).padStart(1, '0'));
-
-console.log(memeNumber.toString().padStart(2, '0'));
+// ----
