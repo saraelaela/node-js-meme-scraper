@@ -41,22 +41,23 @@ let memeNumber = 0;
 // }
 
 for (const key of firstTen) {
-  await axios
-    .get(key, {
+  try {
+    // Await the axios GET request directly
+    const response = await axios.get(key, {
       responseType: 'arraybuffer',
-    })
-
-    .then((response) => {
-      // Extract the last part of the URL for the image file name
-
-      // Save the image with the desired file name format
-      fs.writeFileSync(
-        `memes/${memeNumber.toString().padStart(2, '0')}.jpg`,
-        response.data,
-      );
-
-      memeNumber++;
     });
+
+    // Save the image with the desired file name format
+    fs.writeFileSync(
+      `memes/${memeNumber.toString().padStart(2, '0')}.jpg`,
+      response.data,
+    );
+
+    memeNumber++;
+  } catch (error) {
+    // Handle errors if the request fails
+    console.error(`Failed to download meme from ${key}:`, error);
+  }
 }
 
 // console.log(arr.join(' '));
