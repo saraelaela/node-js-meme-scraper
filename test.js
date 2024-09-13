@@ -21,7 +21,7 @@ const axiosResponse = await axios.request({
 
 const $ = cheerio.load(axiosResponse.data);
 
-//$.html();
+// $.html();
 // $('img[id=image]').html();
 const htmlElement = $('#image');
 console.log(htmlElement.html());

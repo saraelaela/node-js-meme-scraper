@@ -33,7 +33,7 @@ for (let key of firstTen) {
 }
 
 let memeNumber = 0;
-//let memeName = 'file';
+// let memeName = 'file';
 
 // for (let element in firstTen) {
 //   parseInt(memeNumber++);
